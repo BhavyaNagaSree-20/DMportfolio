@@ -32,7 +32,7 @@
             --transition-rich: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 
             /* Heading Font Stack */
-            --font-calligraphy: 'Lucida Calligraphy', 'Great Vibes', 'Apple Chancery', 'URW Chancery L', cursive;
+            --font-calligraphy: 'Great Vibes', 'Lucida Calligraphy', 'Apple Chancery', 'URW Chancery L', cursive;
         }
 
         * {
@@ -57,10 +57,10 @@
         h1,
         h2,
         h3 {
-            font-family: var(--font-calligraphy);
+            font-family: 'Great Vibes', cursive;
             text-align: center;
             font-weight: normal;
-            /* Calligraphy fonts usually look better without extra bolding */
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Interactive Background Layers */
@@ -160,6 +160,7 @@
             cursor: pointer;
             flex-direction: column;
             gap: 7px;
+            z-index: 1001;
         }
 
         .menu-toggle span {
@@ -494,6 +495,8 @@
                 flex-direction: column;
                 padding-top: 50px;
                 transition: 0.6s ease;
+                z-index: 999;
+                overflow-y: auto;
             }
 
             .nav-links.active {
@@ -510,6 +513,13 @@
 
             h2 {
                 font-size: 2.2rem !important;
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-family: 'Great Vibes', cursive;
+                -webkit-font-smoothing: antialiased;
             }
         }
 
@@ -688,7 +698,7 @@
         <section id="about" class="card">
             <h2><span>🔹</span> Professional Profile</h2>
             <p style="text-align: center; max-width: 800px; margin: 0 auto;">Digital Marketing fresher with hands-on
-                experience in SEO, content creation, and website management. I run Nature’s Soul Chronicles, promoting
+                experience in SEO, content creation, and website management. I run Nature's Soul Chronicles, promoting
                 it across social media while optimizing engagement and performance.</p>
         </section>
 
@@ -754,11 +764,11 @@
         <!-- Core Project -->
         <section id="project" class="card">
             <h2><span>🔹</span> Core DM Project</h2>
-            <h3>Nature’s Soul Chronicles</h3>
+            <h3>Nature's Soul Chronicles</h3>
             <div style="text-align: center; margin-top: 20px;">
                 <p><strong>Platform:</strong> WordPress</p>
-                <p style="margin-top: 20px; opacity: 0.9; max-width: 800px; margin: 20px auto 0;">Nature’s Soul
-                    Chronicles is a WordPress website highlighting nature’s wonders—Land, Water, Forests & Wildlife, and
+                <p style="margin-top: 20px; opacity: 0.9; max-width: 800px; margin: 20px auto 0;">Nature's Soul
+                    Chronicles is a WordPress website highlighting nature's wonders—Land, Water, Forests & Wildlife, and
                     Sky & Space. The site features engaging content, interactive CTAs, and is promoted across social
                     media while tracking performance to boost engagement.</p>
             </div>
@@ -850,11 +860,11 @@
         <!-- Contact -->
         <section id="contact" class="premium-contact">
             <div class="contact-wrapper">
-                <h2>Let’s Connect</h2>
+                <h2>Let's Connect</h2>
                 <p class="contact-description">
 
                     Looking for someone who can grow your brand digitally?<br>
-                    Let’s connect and create powerful marketing strategies.<br>
+                    Let's connect and create powerful marketing strategies.<br>
                 </p>
                 <br>
                 <div class="contact-actions">
@@ -870,7 +880,7 @@
     </div>
 
     <footer>
-        &copy; 2026 D. Bhavya Naga Sree | Nature’s Soul Chronicles | <a
+        &copy; 2026 D. Bhavya Naga Sree | Nature's Soul Chronicles | <a
             href="mailto:naturesoulchronicles@gmail.com">Contact</a>
     </footer>
 
@@ -968,6 +978,14 @@
         menuToggle.addEventListener("click", () => {
             navLinks.classList.toggle("active");
             menuToggle.classList.toggle("open");
+        });
+
+        // Close mobile menu when a nav link is tapped
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('open');
+            });
         });
 
         const observer = new IntersectionObserver(entries => {
